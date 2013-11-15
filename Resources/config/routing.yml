@@ -1,0 +1,3 @@
+ez_systems_forum_php2013_demo_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: EzSystemsForumPhp2013DemoBundle:Default:index }
