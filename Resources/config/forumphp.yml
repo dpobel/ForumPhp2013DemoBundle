@@ -1,3 +1,14 @@
+# Bundle name: EzSystemsForumPhp2013DemoBundle
+# Controller: ForumPhp
+#
+# Override (controller is optional):
+# location_view:
+#     full:
+#         <name>:
+#             template: <path>
+#             match:
+#                 <matcher>: <value>
+#             controller: Bundle:Controller:action
 system:
     forumphp:
         location_view:
