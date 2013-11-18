@@ -1,0 +1,21 @@
+{% extends "eZDemoBundle::pagelayout.html.twig" %}
+
+{% block content %}
+<section>
+    <h1>{{ ez_render_field( content, "name" ) }}</h1>
+
+    <article class="row">
+        {% for speaker in speakers %}
+        <div class="span6">
+            {{ render(
+                controller(
+                    "ez_content:viewLocation",
+                    {locationId: speaker.contentInfo.mainLocationId, viewType: 'line'}
+                )
+            ) }}
+        </div>
+        {% endfor %}
+    </article>
+
+</section>
+{% endblock %}

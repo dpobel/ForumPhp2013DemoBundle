@@ -1,0 +1,21 @@
+{% extends "eZDemoBundle::pagelayout.html.twig" %}
+
+{% block content %}
+<section>
+    <h1>{{ ez_render_field( content, "nom" ) }}</h1>
+
+    <div class="row">
+    {% for conference in conferences %}
+        <div class="span6">
+            {{ render(
+                controller(
+                    "ez_content:viewLocation",
+                    {locationId: conference.contentInfo.mainLocationId, viewType: 'line'}
+                )
+            ) }}
+        </div>
+    {% endfor %}
+    </div>
+
+</section>
+{% endblock %}

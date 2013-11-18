@@ -1,0 +1,5 @@
+{% extends noLayout ? viewbaseLayout : "eZDemoBundle::pagelayout.html.twig" %}
+
+{% block content %}
+    <h3><a href="{{ path( location ) }}">{{ ez_render_field( content, "nom" ) }}</a></h3>
+{% endblock %}

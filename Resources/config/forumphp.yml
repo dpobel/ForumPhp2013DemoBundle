@@ -12,3 +12,33 @@
 system:
     forumphp:
         location_view:
+            full:
+                conference:
+                    template: "EzSystemsForumPhp2013DemoBundle:full:conference.html.twig"
+                    match:
+                        Identifier\ContentType: [conference]
+                conferencier:
+                    controller: "EzSystemsForumPhp2013DemoBundle:ForumPhp:showSpeaker"
+                    template: "EzSystemsForumPhp2013DemoBundle:full:conferencier.html.twig"
+                    match:
+                        Identifier\ContentType: [conferencier]
+                programme:
+                    controller: "EzSystemsForumPhp2013DemoBundle:ForumPhp:showProgram"
+                    template: "EzSystemsForumPhp2013DemoBundle:full:programme.html.twig"
+                    match:
+                        Identifier\ContentType: [programme]
+                folder:
+                    controller: "EzSystemsForumPhp2013DemoBundle:ForumPhp:showSpeakers"
+                    template: "EzSystemsForumPhp2013DemoBundle:full:folder.html.twig"
+                    match:
+                        Identifier\ContentType: [folder]
+            line:
+                conference:
+                    template: "EzSystemsForumPhp2013DemoBundle:line:conference.html.twig"
+                    controller: "EzSystemsForumPhp2013DemoBundle:ForumPhp:showLineConference"
+                    match:
+                        Identifier\ContentType: [conference]
+                conferencier:
+                    template: "EzSystemsForumPhp2013DemoBundle:line:conferencier.html.twig"
+                    match:
+                        Identifier\ContentType: [conferencier]

@@ -1,0 +1,24 @@
+{% extends "eZDemoBundle::pagelayout.html.twig" %}
+
+{% block content %}
+<section>
+    <article>
+        <h1>{{ ez_render_field( content, "titre" ) }}</h1>
+        <div class="row">
+
+            <div class="span9">
+                <h2>Résumé</h2>
+                {{ ez_render_field( content, "description" ) }}
+            </div>
+            
+            <div class="span3">
+                <h2>Horaire</h2>
+                {{ ez_render_field( content, "debut" ) }}
+                {{ ez_render_field( content, "fin" ) }}
+                <h2>Conférencier(s)</h2>
+                {{ ez_render_field( content, "conferenciers" ) }}
+            </div>
+        </div>
+    </article>
+</section>
+{% endblock %}

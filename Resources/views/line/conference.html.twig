@@ -1,0 +1,17 @@
+{% extends noLayout ? viewbaseLayout : "eZDemoBundle::pagelayout.html.twig" %}
+
+{% block content %}
+    <h2><a href="{{ path( location ) }}">{{ ez_render_field( content, "titre" ) }}</a></h2>
+    <p>
+        Salle: {{ room.contentInfo.name }}
+        &mdash;
+        {{ ez_render_field( content, "debut", {template: _self} ) }}
+    </p>
+    <h3>Conférencier(s):</h3>
+    {{ ez_render_field( content, "conferenciers" ) }}
+{% endblock %}
+
+
+{% block ezdatetime_field %}
+    {{ field.value.value|localizeddate( 'short', 'short', parameters.locale ) }}
+{% endblock %}
