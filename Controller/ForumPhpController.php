@@ -39,6 +39,50 @@ class ForumPhpController extends Controller
         );
     }
 
+    protected function getRoom( $locationId )
+    {
+        $locationService = $this->getRepository()->getLocationService();
+        $contentService = $this->getRepository()->getContentService();
+
+        $location = $locationService->loadLocation( $locationId );
+        $roomLocation = $locationService->loadLocation( $location->parentLocationId );
+        return $contentService->loadContent( $roomLocation->contentId );
+    }
+
+    public function showConferenceAction( $locationId, $viewType, $layout = false, array $params = array() )
+    {
+        // expose the room in the template
+        $params['room'] = $this->getRoom( $locationId );
+        return $this->get( 'ez_content' )->viewLocation(
+            $locationId, $viewType, $layout, $params
+        );
+    }
+
+    public function showProgramAction( $locationId, $viewType, $layout = false, array $params = array() )
+    {
+        // search for all 'conference' contents
+        // sorted by beginning date
+        $searchService = $this->getRepository()->getSearchService();
+        $query = new Query();
+
+        $query->criterion = new Criterion\ContentTypeIdentifier( 'conference' );
+        $query->sortClauses = array(
+            new SortClause\Field( 'conference', 'debut' )
+        );
+        $results = $searchService->findContent( $query );
+
+        // expose the list of conferences
+        $params['conferences'] = array();
+        foreach ( $results->searchHits as $hit )
+        {
+            $params['conferences'][] = $hit->valueObject;
+        }
+
+        return $this->get( 'ez_content' )->viewLocation(
+            $locationId, $viewType, $layout, $params
+        );
+    }
+
     public function showSpeakersAction( $locationId, $viewType, $layout = false, array $params = array() )
     {
         // search for all 'conferencier' object
