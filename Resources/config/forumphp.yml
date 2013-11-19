@@ -12,3 +12,8 @@
 system:
     forumphp:
         location_view:
+            full:
+                conference:
+                    template: "EzSystemsForumPhp2013DemoBundle:full:conference.html.twig"
+                    match:
+                        Identifier\ContentType: [conference]
