@@ -21,4 +21,25 @@ use eZ\Publish\API\Repository\Values\Content\Query\SortClause;
 class ForumPhpController extends Controller
 {
 
+    public function showSpeakerAction( $locationId, $viewType, $layout = false, array $params = array() )
+    {
+        $locationService = $this->getRepository()->getLocationService();
+        $contentService = $this->getRepository()->getContentService();
+
+        $location = $locationService->loadLocation( $locationId );
+        $contentInfo = $contentService->loadContentInfo( $location->contentId );
+        $relations = $contentService->loadReverseRelations( $contentInfo );
+
+        // expose the conferences made by the user
+        // by using the reverse relation conference <- conferencier
+        $params['userConferences'] = array();
+        foreach ( $relations as $relation )
+        {
+            $params['userConferences'][] = $relation->getSourceContentInfo();
+        }
+
+        return $this->get( 'ez_content' )->viewLocation(
+            $locationId, $viewType, $layout, $params
+        );
+    }
 }

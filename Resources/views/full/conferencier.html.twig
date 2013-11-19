@@ -1,0 +1,25 @@
+{% extends "eZDemoBundle::pagelayout.html.twig" %}
+
+{% block content %}
+<section>
+    <article>
+        <h1>{{ ez_render_field( content, "nom" ) }}</h1>
+
+        {% if not ez_is_field_empty( content, "bio" ) %}
+            <h2>Biographie</h2>
+            <div>
+            {{ ez_render_field( content, "bio" ) }}
+            </div>
+        {% endif %}
+
+        {% if userConferences|length %}
+            <h2>Conférence(s):</h2>
+            <ul>
+            {% for conf in userConferences %}
+                <li><a href="{{ path( 'ez_urlalias', {locationId: conf.mainLocationId} ) }}">{{ ez_content_name( conf ) }}</a></li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    </article>
+</section>
+{% endblock %}

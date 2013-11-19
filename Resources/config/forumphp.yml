@@ -17,3 +17,8 @@ system:
                     template: "EzSystemsForumPhp2013DemoBundle:full:conference.html.twig"
                     match:
                         Identifier\ContentType: [conference]
+                conferencier:
+                    controller: "EzSystemsForumPhp2013DemoBundle:ForumPhp:showSpeaker"
+                    template: "EzSystemsForumPhp2013DemoBundle:full:conferencier.html.twig"
+                    match:
+                        Identifier\ContentType: [conferencier]
