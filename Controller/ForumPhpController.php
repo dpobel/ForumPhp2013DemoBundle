@@ -10,13 +10,9 @@
 namespace EzSystems\ForumPhp2013DemoBundle\Controller;
 
 use eZ\Bundle\EzPublishCoreBundle\Controller;
-/*
-use eZ\Publish\API\Repository\Values\Content\Location;
-use Symfony\Component\HttpFoundation\Response;
 use eZ\Publish\API\Repository\Values\Content\Query;
 use eZ\Publish\API\Repository\Values\Content\Query\Criterion;
 use eZ\Publish\API\Repository\Values\Content\Query\SortClause;
-*/
 
 class ForumPhpController extends Controller
 {
@@ -38,6 +34,30 @@ class ForumPhpController extends Controller
             $params['userConferences'][] = $relation->getSourceContentInfo();
         }
 
+        return $this->get( 'ez_content' )->viewLocation(
+            $locationId, $viewType, $layout, $params
+        );
+    }
+
+    public function showSpeakersAction( $locationId, $viewType, $layout = false, array $params = array() )
+    {
+        // search for all 'conferencier' object
+        // sorted by content name
+        $searchService = $this->getRepository()->getSearchService();
+        $query = new Query();
+
+        $query->criterion = new Criterion\ContentTypeIdentifier( 'conferencier' );
+        $query->sortClauses = array(
+            new SortClause\ContentName()
+        );
+        $results = $searchService->findContent( $query );
+
+        // expose the list of speakers
+        $params['speakers'] = array();
+        foreach ( $results->searchHits as $hit )
+        {
+            $params['speakers'][] = $hit->valueObject;
+        }
         return $this->get( 'ez_content' )->viewLocation(
             $locationId, $viewType, $layout, $params
         );

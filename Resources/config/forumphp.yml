@@ -22,3 +22,13 @@ system:
                     template: "EzSystemsForumPhp2013DemoBundle:full:conferencier.html.twig"
                     match:
                         Identifier\ContentType: [conferencier]
+                folder:
+                    controller: "EzSystemsForumPhp2013DemoBundle:ForumPhp:showSpeakers"
+                    template: "EzSystemsForumPhp2013DemoBundle:full:folder.html.twig"
+                    match:
+                        Identifier\ContentType: [folder]
+            line:
+                conferencier:
+                    template: "EzSystemsForumPhp2013DemoBundle:line:conferencier.html.twig"
+                    match:
+                        Identifier\ContentType: [conferencier]
