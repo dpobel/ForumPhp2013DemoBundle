@@ -4,6 +4,10 @@
 <section>
     <article>
         <h1>{{ ez_render_field( content, "titre" ) }}</h1>
+
+        {% if not ez_is_field_empty( content, "slides" ) %}
+        {{ ez_render_field( content, "slides" ) }}
+        {% endif %}
         <div class="row">
 
             <div class="span9">
