@@ -1,5 +1,5 @@
 Demo bundle for the *eZ Publish : un CMS pour créer un site orienté contenu en
-45 minutes* given at the Forum PHP 2013.
+45 minutes* talk given at the Forum PHP 2013.
 
 More info in:
 
@@ -18,7 +18,7 @@ In a recent install of eZ Publish:
 in the `_install` directory
 * Add the following line in `ezpublish/EzPublishKernel.php` at the end of
   `$bundles` array:
-  ```php new
+  ```new
   EzSystems\ForumPhp2013DemoBundle\EzSystemsForumPhp2013DemoBundle(),
   ```
 * Clear the caches with: `php ezpublish/console cache:clear`
